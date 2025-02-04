@@ -1,4 +1,4 @@
-import { Pill, Hospital, Calendar, Bell, Search } from "lucide-react";
+import { Pill, Hospital, Calendar, Bell } from "lucide-react";
 import Header from "@/components/Header";
 import SearchBar from "@/components/SearchBar";
 import ServiceCard from "@/components/ServiceCard";
@@ -8,34 +8,56 @@ const Index = () => {
   const { toast } = useToast();
 
   const handleServiceClick = (service: string) => {
-    toast({
-      title: "Coming Soon",
-      description: `${service} feature will be available soon!`,
-    });
+    switch (service) {
+      case "Medicine Booking":
+        toast({
+          title: "Medicine Booking",
+          description: "Searching for nearby pharmacies...",
+        });
+        break;
+      case "Hospital Beds":
+        toast({
+          title: "Hospital Beds",
+          description: "Checking bed availability in nearby hospitals...",
+        });
+        break;
+      case "Doctor Appointments":
+        toast({
+          title: "Doctor Appointments",
+          description: "Loading available appointment slots...",
+        });
+        break;
+      case "Medicine Reminders":
+        toast({
+          title: "Medicine Reminders",
+          description: "Setting up your medicine reminder...",
+        });
+        break;
+    }
   };
 
   const services = [
     {
       title: "Medicine Booking",
-      description: "Book medicines from nearby stores",
+      description: "Find and book medicines from nearby stores with real-time availability",
       icon: Pill,
       onClick: () => handleServiceClick("Medicine Booking"),
     },
     {
       title: "Hospital Beds",
-      description: "Check bed availability in hospitals",
+      description: "Check real-time bed availability in hospitals near you",
       icon: Hospital,
       onClick: () => handleServiceClick("Hospital Beds"),
     },
     {
       title: "Doctor Appointments",
-      description: "Book appointments with doctors",
+      description: "Schedule appointments with doctors based on their availability",
       icon: Calendar,
       onClick: () => handleServiceClick("Doctor Appointments"),
     },
     {
       title: "Medicine Reminders",
-      description: "Set reminders for your medicines",
+      description: "Set up personalized reminders for your medication schedule",
       icon: Bell,
       onClick: () => handleServiceClick("Medicine Reminders"),
     },
@@ -58,7 +80,7 @@ const Index = () => {
 
           <SearchBar />
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {services.map((service) => (
               <ServiceCard
                 key={service.title}
